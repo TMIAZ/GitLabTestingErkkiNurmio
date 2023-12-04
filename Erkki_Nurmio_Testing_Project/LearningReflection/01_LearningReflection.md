@@ -1,0 +1,11 @@
+This was the first time I tested some site. I found it quite intresting. The given Webapp, GitLab, was a new site for me. That's why I needed to google for example how to delete a project. I understand that the selected Webapp is very well known and is coded well so there should not be any bugs to found. It would be fun to actually find real bugs rather than write a bug report for a given bug.
+
+I made the testings step by step and between those steps, I wrote what the step was and what variable I used. I also tried to run the whole test at once and then write what I did but that wasn't smooth way to do it. I used Visual Studio Code for the documentation.
+
+I think the instuctions were easy to follow and the only troubles I encountered was when I used GitLab and didn't find something so I had to google or watch the zoom recording of the lecture to know how to do that. I had used GitHub one before, however it was a long time ago so I had also some problems downloading my files.
+
+If I had to automate these test cases in the future, I would probably use Selenium because there you can write with Python, which I have used. When searching a job for tester or automation tester almost every job requires knowledge of Python. Also experience of test automation framework and testing tools is needed, especially Robot Framework and Jenkins. Web application testing, both front-end and API, is also mentioned many times. Less suprisingly Agile ways of working and good English skills is required.
+      
+If I would continue in testing I would need profiency in frameworks and testing tools and stronger programming skills. Thinking of soft skills, I would need analytical thinking and good problem solving. Also good communication skill is needed in testing.
+
+Testing was completely new thing for me. Propably I won't start a career in testing but the knowledge of testing is a good thing also for those who are not testers. I might have to work with a tester in the future so now I know what he or she does. I think I know now the fundamentals of software testing and can tell someone what software testing means.

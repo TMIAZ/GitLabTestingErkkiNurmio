@@ -1,0 +1,119 @@
+
+#******************** Settings ************************
+
+Documentation	Project Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+Pre Condition	Open Browser, Log In
+Post Condition	Close Browser
+Tags	Projects, Path
+
+#******************* Common Variables ********************
+
+ProjectUrl= https://gitlab.com/dashboard/projects
+Project_Name= Test Project
+Project_Url= en_test
+Project_Slug= test-project
+Template_Name= Project2
+Template_Slug= Project2
+New_Template_Name= New Name
+First_Project= First Project
+First_Project_Slug= First Project
+Empty=
+
+
+
+#******************** Test Cases *************************
+
+#Positive Test
+
+Create A Blank Project
+	Navigate To Project Page  ProjectUrl
+	Create A New Project
+	Input Project Name= Project_Name
+	Input Project Url= Project_Url
+	Input Project Slug= Project_Slug
+    Create Project
+    Expected Results:	A New Blank Project Is Created
+	Actual Results:	A New Blank Project Is Created
+	Status:	Pass
+
+Create Template Project 
+	Navigate To Project Page  ProjectUrl
+	Create Project From Template
+	Select Template
+	Input Template Name= Template_Name
+	Input Project Url= Project_Url
+	Input Project Slug= Template_Slug
+    Create Project
+    Expected Results:	A New Template Project Is Created
+	Actual Results:	A New Template Project Is Created
+	Status:	Pass
+
+Update Name Of Template Project
+	Navigate To Project Page  ProjectUrl
+	Select Template_Name
+	Select Settings
+	Select General
+	Change Template Name= New_Template_Name
+	Select Save Changes
+    Expected Results:	Template Name Will Be Changed
+	Actual Results:	Template Name Was Changed
+	Status:	Pass
+
+Delete Template Project
+	Navigate To Project Page  ProjectUrl
+	Select New_Template_Name
+	Select Settings
+	Select General
+	Expand Advanced section
+	Click Delete Project
+	Input Project_Url/Template_Slug
+    Expected Results:	Template Is Deleted
+	Actual Results:	Template Was Deleted
+	Status:	Pass
+
+Navigate To Project Page  ProjectUrl
+	Create A New Project
+	Input Project Name= Project_Name
+	Input Project Url= Project_Url
+	Input Project Slug= Project_Slug
+    Create Project
+    Expected Results:	A New Blank Project Is Created
+	Actual Results:	A New Blank Project Is Created
+	Status:	Pass
+
+Valide that message is showing Project 'First project ' was successfully created
+	Navigate To Project Page  ProjectUrl
+	Create A New Project
+	Input Project Name= First_Project
+	Input Project Url= Project_Url
+	Input Project Slug= First_Project_Slug
+    Create Project
+    Expected Results:	Message that First Project Has Been Created
+	Actual Results: Message that First Project Was Created, "Project 'First Project' was successfully created"
+	Status:	Pass
+
+#Negative Test
+
+Create A Blank Project With The Same Name As Already Created Project
+	Navigate To Project Page  ProjectUrl
+	Create A New Project
+	Input Project Name= Project_Name
+	Input Project Url= Project_Url
+	Input Project Slug= Project_Slug
+    Create Project
+    Expected Results:	Error Message That Project Already Excist
+	Actual Results:	Error Message That Project Already Excist, "Project namespace name has already been taken, Name has already been taken, Path has already been taken"
+	Status:	Pass
+
+Create A Blank Project With Empty Project Name
+	Navigate To Project Page  ProjectUrl
+	Create A New Project
+	Input Project Name	Empty
+	Input Project Url= Project_Url
+	Input Project Slug= Project_Slug
+    Create Project
+    Expected Results:	Error Message That Project Name Cannot Be Empty
+	Actual Results:	Error Message That Project Name Cannot Be Empty, "Name must start with a letter, digit, emoji, or underscore"
+	Status:	Pass
+

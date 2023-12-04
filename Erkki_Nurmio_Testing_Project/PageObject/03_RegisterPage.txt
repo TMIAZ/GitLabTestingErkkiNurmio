@@ -1,0 +1,128 @@
+
+#******************** Settings ************************
+
+Documentation	Testing the register functionality. Register Test scenario with valid and invalid credentials.
+
+Pre Condition	Open Browser
+Post Condition	Close All Browsers
+Tags	Register
+
+#******************* Common Variables ********************
+
+RegisterUrl = https://gitlab.com/users/sign_up
+
+FirstName= EEE
+LastName=NNN
+UserName= XYZ
+Password= ********
+Email= XYZ@gmail.com
+Invalid_Password= ****
+Invalid_Email= XYZ
+Empty= 
+
+#******************** Test Cases *************************
+
+# Positive Test
+
+Register With Valid Credential
+	Navigate To Register Page  RegisterUrl
+	Input First Name	FirstName
+	Input Last Name	LastName
+    Input Username  UserName
+	Input Email	Email
+    Input Password  Password
+    Submit Register Form
+    Expected Results:	Register Page Should Ask A Confirmation Code Which Was Sent To Given Email
+	Actual Results:	Register Page Asked A Confirmation Code Which Was Sent To Given Email
+	Status:	Pass
+
+# Negative Test
+
+Register User With Same Above Username After Registering
+	Navigate To Register Page  RegisterUrl
+	Input First Name	FirstName
+	Input Last Name	LastName
+   	Input Username  UserName
+	Input Email	Email
+   	Input Password  Password
+   	Submit Register Form
+   	Expected Results:	Error Message That Username Is Taken
+	Actual Results:	Error Message That Username Is Taken, "Username Is Already Taken"
+	Status:	Pass
+
+Register User With Same Above Email After Registering
+	Navigate To Register Page  RegisterUrl
+	Input First Name	FirstName
+	Input Last Name	LastName
+   	Input Username  UserName
+	Input Email	Email
+   	Input Password  Password
+   	Submit Register Form
+   	Expected Results:	Error Message That Email Is Taken
+	Actual Results:	Error Message That Email Is Taken, "Email has already been taken"
+	Status:	Pass
+	
+Register User With Empty Username
+	Navigate To Register Page  RegisterUrl
+	Input First Name	FirstName
+	Input Last Name	LastName
+    Input Username  Empty
+	Input Email	Email
+    Input Password  Password
+    Submit Register Form
+    Expected Results:	Error Message That Username Is Too Short
+	Actual Results:	Error Message That Username Is Too Short, "Username is too short (minimum is 2 characters)"
+	Status:	Pass
+
+Register User With Empty Password
+	Navigate To Register Page  RegisterUrl
+	Input First Name	FirstName
+	Input Last Name	LastName
+    Input Username  UserName
+	Input Email	Email
+    Input Password  Empty
+    Submit Register Form
+    Expected Results:	Error Message That Password Is Too Short
+	Actual Results:	Error Message That Password Is Too Short, "Minimum Length is 8 Characters"
+	Status:	Pass
+
+Register User With Empty First Name
+	Navigate To Register Page  RegisterUrl
+	Input First Name	Empty
+	Input Last Name	LastName
+    Input Username  UserName
+	Input Email	Email
+    Input Password  Password
+    Submit Register Form
+    Expected Results:	Error Message That First Name Is Needed
+	Actual Results:	Error Message That First Name Is Needed, "This field is required"
+	Status:	Pass
+	
+Register User With Empty Last Name
+	Navigate To Register Page  RegisterUrl
+	Input First Name	FirstName
+	Input Last Name	Empty
+    Input Username  UserName
+	Input Email	Email
+    Input Password  Password
+    Submit Register Form
+    Expected Results:	Error Message That Last Name Is Needed
+	Actual Results:	Error Message That Last Name Is Needed, "This field is required"
+	Status:	Pass
+
+Register User With Invalid Email
+	Navigate To Register Page  RegisterUrl
+	Input First Name	FirstName
+	Input Last Name	LastName
+    Input Username  UserName
+	Input Email	Invalid_Email
+    Input Password  Password
+    Submit Register Form
+    Expected Results:	Error Message That Email Type Is Invalid
+	Actual Results:	Error Message That Email Type Is Invalid, "Please provide a valid email address"
+	Status:	Pass
+
+
+
+
+

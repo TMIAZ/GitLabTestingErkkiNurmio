@@ -1,0 +1,74 @@
+
+#******************** Settings ************************
+
+Documentation	Issue Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+Pre Condition	Open Browser, Log In, Create Project 
+Post Condition	Close Browser
+Tags	Issues
+
+#******************* Common Variables ********************
+
+IssueUrl= https://gitlab.com/dashboard/issues
+Project_Name= Test Project
+Title_Name= Issue
+New_Title= Issue2
+Empty=
+
+
+
+#******************** Test Cases *************************
+
+#Positive Test
+	
+Create Issue
+	Navigate To Issue Page  IssueUrl
+    Create New Issue In Project_Name
+	Input Title= Title_Name
+	Create Issue
+    Expected Results:	An Issue Is Created
+	Actual Results:	An Issue Was Created
+	Status:	Pass
+
+Update Name Of Issue 
+	Select A Project= Project_Name
+	Navigate To Issue Page  IssueUrl
+	Select Issue= Title_Name
+	Select Edit
+	Change Title_Name= New_Title
+	Save Changes
+    Expected Results:	The Issue's Name Has Been Updated
+	Actual Results:	The Issue's Name Was Updated
+	Status:	Pass
+
+Create Second Issue With Privious Updated Name
+	Navigate To Issue Page  IssueUrl
+    Create New Issue In Project_Name
+	Input Title= New_Title
+	Create Issue
+    Expected Results:	An Issue Is Created, Two Issues With The Same Name
+	Actual Results:	An Issue Was Created, Two Issues With The Same Name
+	Status:	Pass
+
+Delete first issue
+	Select A Project= Project_Name
+	Navigate To Issue Page  IssueUrl
+    Select Issue= New_Title
+	Select Issue Actions
+	Delete Issue
+	Confirm Delete Issue
+    Expected Results:	The Issue Is Deleted
+	Actual Results:	The Issue Was Deleted, "The issue was successfully deleted"
+	Status:	Pass
+
+#Negative Test
+
+Create Issue Without Title Name
+	Navigate To Issue Page  IssueUrl
+	Select A Project= Project_Name
+    Create New Issue In Project_Name
+	Input Title= Empty
+	Create Issue
+    Expected Results:	Empty Issue Name Is Invalid
+	Actual Results:	Empty Issue Name Is Invalid, "This field is required"
+	Status:	Pass
